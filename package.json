@@ -2,7 +2,7 @@
   "name": "game-reducer-library",
   "version": "1.0.0",
   "description": "Library of Games (expressed as Reducers)",
-  "main": "index.js",
+  "main": "lib/index.js",
   "repository": "git@github.com:JoelCodes/game-reducer-library.git",
   "author": "JoelCodes <me@joelshinness.com>",
   "license": "MIT",
@@ -22,7 +22,7 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "tsc src/index.ts --outDir . -d",
+    "build": "tsc src/index.ts --outDir ./lib -d",
     "postinstall": "npm run build"
   }
 }
