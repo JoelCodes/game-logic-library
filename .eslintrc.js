@@ -17,5 +17,12 @@ module.exports = {
   ],
   rules: {
     'import/prefer-default-export': 'off',
+    'import/no-unresolved': 'off',
+    'import/extensions': 'off',
+    'no-undef': 'off',
+    'no-unused-vars': 'off',
+    'implicit-arrow-linebreak': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
+
   },
 };
