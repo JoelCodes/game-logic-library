@@ -1,0 +1,9 @@
+<?xml version="1.0" standalone="no"?>
+<svg viewBox="-150 -50 300 100" style='background: white;' version="1.1"
+     xmlns="http://www.w3.org/2000/svg">
+  <rect fill='red' width='75' height='50' x='-125' y='-25' stroke='brown' stroke-width='5'/>
+  <text font-size='50px' text-anchor='middle' x='-87.5' y='15' fill='white'>+</text>
+  <text font-size='50px' text-anchor='middle' y='15'>0</text>
+  <rect fill='red' width='75' height='50' x='50' y='-25' stroke='brown' stroke-width='5'/>
+  <text font-size='50px' text-anchor='middle' x='87.5' y='15' fill='white'>-</text>
+</svg>

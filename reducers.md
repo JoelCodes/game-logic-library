@@ -114,13 +114,7 @@ Well, hold on to your hats, because I'm going to introduce a crazy idea: if an a
 
 Here's an example.  Imagine a simple little HTML page with a counter and two buttons: Plus and Minus.
 
-<svg viewBox="-150 -50 300 100" style='background: white;'>
-  <rect fill='red' width='75' height='50' x='-125' y='-25' stroke='brown' stroke-width='5'/>
-  <text font-size='50px' text-anchor='middle' x='-87.5' y='15' fill='white'>+</text>
-  <text font-size='50px' text-anchor='middle' y='15'>0</text>
-  <rect fill='red' width='75' height='50' x='50' y='-25' stroke='brown' stroke-width='5'/>
-  <text font-size='50px' text-anchor='middle' x='87.5' y='15' fill='white'>-</text>
-</svg>
+![Counter App](images/counter-app.svg)
 
 ```html
 <button id='plus-button'>+</button>
