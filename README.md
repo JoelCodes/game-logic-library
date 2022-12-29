@@ -16,11 +16,14 @@ Some of the following components to describe logic:
 
 ```typescript
 type Reducer<TState, TAction> = (state:TState, action:TAction) => TState;
-type Chainer<TInput, TOutput = TAction> = (out:(action:TOutput) => void) => (input:TInput) => void;
 ```
 
 * Selector - a function that gives a slice of information from the state
 * Chainer - a "middleware" function that can perform asynchrony, randomness, and side effects (keeping the reducer pure)
+
+```typescript
+type Chainer<TInput, TOutput = TAction> = (out:(action:TOutput) => void) => (input:TInput) => void;
+```
 
 For more information on Reducers and how they represent app logic, [click here](./reducers.md).
 
