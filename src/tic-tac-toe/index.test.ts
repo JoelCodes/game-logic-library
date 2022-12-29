@@ -43,6 +43,12 @@ describe('Tic Tac Toe', () => {
       const afterFirstMove = TicTacToeReducer(initialState, take0);
       expect(TicTacToeReducer(afterFirstMove, take0)).toEqual(afterFirstMove);
     });
+    it('ignores moves on spots not available on the board', () => {
+      const afterFirstMove = TicTacToeReducer(initialState, { type: 'MOVE', position: 0 });
+      expect(TicTacToeReducer(afterFirstMove, { type: 'MOVE', position: -1 } as any as TicTacToeAction)).toEqual(afterFirstMove);
+      expect(TicTacToeReducer(afterFirstMove, { type: 'MOVE', position: 9 } as any as TicTacToeAction)).toEqual(afterFirstMove);
+      expect(TicTacToeReducer(afterFirstMove, { type: 'MOVE', position: 3.5 } as any as TicTacToeAction)).toEqual(afterFirstMove);
+    });
     it('ignores moves on a finished match', () => {
       const afterWin = [0, 3, 1, 4, 2].map((position) => ({ type: 'MOVE', position }) as TicTacToeAction).reduce(TicTacToeReducer, initialState);
       expect(TicTacToeReducer(afterWin, { type: 'MOVE', position: 5 })).toEqual(afterWin);

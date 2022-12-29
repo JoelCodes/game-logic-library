@@ -39,6 +39,11 @@ export function TicTacToeReducer(state:TicTacToeState, action:TicTacToeAction):T
     case 'RESET': return initialState;
     case 'MOVE': {
       if (state.gameOver) return state;
+      if (
+        action.position < 0
+        || action.position >= state.board.length
+        || Math.floor(action.position) !== action.position
+      ) return state;
       if (state.board[action.position] !== undefined) return state;
       const newBoard = [...state.board] as TicTacToeState['board'];
       newBoard[action.position] = state.turn;
