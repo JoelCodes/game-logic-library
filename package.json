@@ -1,9 +1,10 @@
 {
-  "name": "game-reducer-library",
+  "name": "game-logic-library",
   "version": "1.0.0",
   "description": "Library of Games (expressed as Reducers)",
   "main": "lib/index.js",
-  "repository": "git@github.com:JoelCodes/game-reducer-library.git",
+  "types": "lib/index.d.ts",
+  "repository": "git@github.com:JoelCodes/game-logic-library.git",
   "author": "JoelCodes <me@joelshinness.com>",
   "license": "MIT",
   "private": false,
@@ -23,6 +24,6 @@
   "scripts": {
     "test": "jest",
     "build": "tsc src/index.ts --outDir ./lib -d",
-    "postinstall": "npm run build"
+    "prepare": "npm run build"
   }
 }
