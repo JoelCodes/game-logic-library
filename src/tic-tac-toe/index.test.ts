@@ -73,6 +73,9 @@ describe('Tic Tac Toe', () => {
     });
   });
   describe('With Undo', () => {
+    const afterFourMoves = [0, 3, 1, 4].map((position) => ({ type: 'MOVE', position }) as TicTacToeAction).reduce(TicTacToeUndoReducer, initialUndoState);
+    const afterGameOver = TicTacToeUndoReducer(afterFourMoves, { type: 'MOVE', position: 2 });
+
     describe('MOVE', () => {
       it('captures a list of positions', () => {
         const afterOneMove = TicTacToeUndoReducer(initialUndoState, { type: 'MOVE', position: 0 });
@@ -92,7 +95,6 @@ describe('Tic Tac Toe', () => {
         expect(TicTacToeUndoReducer(afterOneMove, { type: 'MOVE', position: 0 })).toEqual(afterOneMove);
       });
       it('adds no position if the game is over', () => {
-        const afterGameOver = [0, 3, 1, 4, 2].map((position) => ({ type: 'MOVE', position }) as TicTacToeAction).reduce(TicTacToeUndoReducer, initialUndoState);
         expect(TicTacToeUndoReducer(afterGameOver, { type: 'MOVE', position: 7 })).toEqual(afterGameOver);
       });
     });
@@ -107,14 +109,21 @@ describe('Tic Tac Toe', () => {
         expect(TicTacToeUndoReducer(afterTwoMoves, { type: 'UNDO' })).toEqual(afterOneMove);
       });
       it('removes a gameOver condition if the game was over', () => {
-        const afterFourMoves = [0, 3, 1, 4].map((position) => ({ type: 'MOVE', position }) as TicTacToeAction).reduce(TicTacToeUndoReducer, initialUndoState);
-        const afterGameOver = TicTacToeUndoReducer(afterFourMoves, { type: 'MOVE', position: 2 });
         expect(TicTacToeUndoReducer(afterGameOver, { type: 'UNDO' })).toEqual(afterFourMoves);
+      });
+    });
+    describe('SKIP', () => {
+      it('ignores a finished game', () => {
+        expect(TicTacToeUndoReducer(afterGameOver, { type: 'SKIP' })).toEqual(afterGameOver);
+      });
+      it('switches turns', () => {
+        const afterSkip = TicTacToeUndoReducer(initialUndoState, { type: 'SKIP' });
+        expect(afterSkip).toEqual({ ...initialUndoState, turn: 'O' });
+        expect(TicTacToeUndoReducer(afterSkip, { type: 'SKIP' })).toEqual(initialUndoState);
       });
     });
     describe('RESET', () => {
       it('returns the initial undo state', () => {
-        const afterGameOver = [0, 3, 1, 4, 2].map((position) => ({ type: 'MOVE', position }) as TicTacToeAction).reduce(TicTacToeUndoReducer, initialUndoState);
         expect(TicTacToeUndoReducer(afterGameOver, { type: 'RESET' })).toEqual(initialUndoState);
       });
     });

@@ -69,7 +69,7 @@ TState extends TicTacToeState = TicTacToeState,
 export const TicTacToeReducer = makeTicTacToeReducer(initialState);
 
 export type TicTacToeUndoState = TicTacToeState & { moves: number[] };
-export type TicTacToeUndoAction = TicTacToeAction | { type: 'UNDO' };
+export type TicTacToeUndoAction = TicTacToeAction | { type: 'UNDO' } | {type: 'SKIP'};
 export const initialUndoState:TicTacToeUndoState = {
   ...initialState,
   moves: [],
@@ -92,6 +92,13 @@ export const TicTacToeUndoReducer = (() => {
         };
         delete newState.gameOver;
         return newState as TicTacToeUndoState;
+      }
+      case 'SKIP': {
+        if (state.gameOver) return state;
+        return {
+          ...state,
+          turn: state.turn === 'X' ? 'O' : 'X',
+        };
       }
       case 'MOVE': {
         const newState = baseReducer(state, action);
